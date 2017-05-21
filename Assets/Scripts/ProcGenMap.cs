@@ -46,12 +46,12 @@ public class ProcGenMap : MonoBehaviour
             newFloor.transform.position = transform.position;
             GameManager.tileCount++; //increases global world size
             int seedDrop = Random.Range(0, 17 - i);
-            if(seedDrop == 0 && GameManager.tileCount < 1500) //possibly drops new seed and checks if the world is big enough yet
+            if(seedDrop == 0 && GameManager.tileCount < 100) //possibly drops new seed and checks if the world is big enough yet
             {
                 GameObject newSeed = Instantiate(seed) as GameObject;
                 newSeed.transform.position = transform.position;
             }
         }
-
+        Destroy(gameObject);
     }
 }
