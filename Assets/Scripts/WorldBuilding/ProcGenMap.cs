@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ProcGenMap : MonoBehaviour
 {
-    GameObject gameManager;
 
     public GameObject firstTile; //gameobject to be placed as floor
     public GameObject seed; //gameobject to spread more game objects
@@ -17,7 +16,6 @@ public class ProcGenMap : MonoBehaviour
     {
         GameObject startFloor = Instantiate(firstTile) as GameObject; //first tile placed
 
-        gameManager = GameObject.FindGameObjectWithTag("GameManager");
 
         for (int i = 0; i < 15; i++) //places the rest of the tiles
         {
@@ -49,7 +47,6 @@ public class ProcGenMap : MonoBehaviour
             }
 
             GameObject newFloor = Instantiate(tiles[Random.Range(0,tiles.Length)]) as GameObject;//places new floor tile
-            newFloor.transform.parent = gameManager.transform;
             newFloor.transform.position = transform.position;
             GameManager.tileCount++; //increases global world size
             int seedDrop = Random.Range(0, 17 - i);

@@ -15,10 +15,7 @@ public class EnemyHealth : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-		if(enemyHealth < 0)
-        {
-            Destroy(gameObject);
-        }
+		
 	}
 
     void OnCollisionEnter2D(Collision2D collision)
