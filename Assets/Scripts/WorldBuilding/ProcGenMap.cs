@@ -5,7 +5,7 @@ using UnityEngine;
 public class ProcGenMap : MonoBehaviour
 {
 
-    public GameObject firstTile, lastTile; //gameobject to be placed as floor
+    public GameObject firstTile; //gameobject to be placed as floor
     public GameObject seed; //gameobject to spread more game objects
     Vector3 lastMove = new Vector3 (0f, 10f, 0f); //grabs the last movement
     public GameObject[] tiles;
@@ -65,7 +65,6 @@ public class ProcGenMap : MonoBehaviour
                 newSeed.transform.position = transform.position;
             }
         }
-        GameObject[] seeds = GameObject.FindGameObjectsWithTag("Seed");
         Destroy(gameObject);
     }
 }

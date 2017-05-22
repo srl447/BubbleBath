@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
     public static int tileCount; //Size of world
     public static int totalHealth; // health for both players
 
+    public GameObject lastTile;
+
     int wait; //wait frames
 
     GameObject[] enemies, floors, walls; //arrays for environmental objects
@@ -39,24 +41,38 @@ public class GameManager : MonoBehaviour
         enemies = GameObject.FindGameObjectsWithTag("Enemy");
         floors = GameObject.FindGameObjectsWithTag("Floor");
         walls = GameObject.FindGameObjectsWithTag("Wall");
+
+        //code to place final tile at farthest distance from start
+        float longestDistance = 0; //var for comparing farthest distance
+        Vector3 farthestPosition = new Vector3(0, 0, 0);//location of farhtest position
+
+        foreach (GameObject floor in floors) //checking every floor to see which is farthest
+        {
+            if(Mathf.Abs(Vector3.Distance(floor.transform.position, Camera.main.transform.position)) > longestDistance)
+            {
+                longestDistance = Mathf.Abs(Vector3.Distance(floor.transform.position, Camera.main.transform.position));
+                farthestPosition = floor.transform.position; //sets the farthest floor its found to farthest position
+            }
+        }
+        //spawns final floor above farthest tile it has found
+        GameObject finalFloor = Instantiate(lastTile) as GameObject; 
+        finalFloor.transform.position = farthestPosition + new Vector3(0, 10f, 0);
     }
 
     void worldRender(GameObject[] world) //renders objects in array based on camera distance
     {
         foreach (GameObject piece in world)
         {
-            if (Vector2.Distance(piece.transform.position, Camera.main.transform.position) > 25)
+            if (piece != null)
             {
-                piece.SetActive(false);
-            }
-            //if checking enemies, also checks if health is 0
-            else if (world == enemies && piece.GetComponent<EnemyHealth>().enemyHealth == 0)
-            {
-                piece.SetActive(false);
-            }
-            else
-            {
-                piece.SetActive(true);
+                if (Vector2.Distance(piece.transform.position, Camera.main.transform.position) > 25)
+                {
+                    piece.SetActive(false);
+                }
+                else
+                {
+                    piece.SetActive(true);
+                }
             }
         }
     }
