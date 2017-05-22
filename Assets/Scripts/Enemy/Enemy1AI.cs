@@ -4,19 +4,24 @@ using UnityEngine;
 
 public class Enemy1AI : MonoBehaviour {
 
-    public Transform player1, player2; //to use player positions
+    Transform player; //to use player positions
+    public string whichPlayer;
+
 
     public float speed; //enemy speed
     public float range; //enemy vision radius
-	
+
+    void Start()
+    {
+        player = GameObject.FindGameObjectWithTag(whichPlayer).transform;
+    }
+
 	// Update is called once per frame
 	void Update ()
     {
-		if(Vector3.Distance(player1.position, this.transform.position) < range)
+		if(Vector2.Distance(player.position, this.transform.position) < range)
         {
-            transform.position = Vector2.MoveTowards(transform.position, player1.position, speed * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
         }
-
-
 	}
 }
