@@ -16,7 +16,6 @@ public class ProcGenMap : MonoBehaviour
     {
         GameObject startFloor = Instantiate(firstTile) as GameObject; //first tile placed
 
-
         for (int i = 0; i < 15; i++) //places the rest of the tiles
         {
             int randomDirection; //randomly decides which direction to go in

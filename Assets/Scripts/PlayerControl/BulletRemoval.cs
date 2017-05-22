@@ -13,7 +13,7 @@ public class BulletRemoval : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        if (Vector3.Distance(transform.position, Camera.main.transform.position) > 7f)
+        if (Vector3.Distance(transform.position, Camera.main.transform.position) > 10.5f)
         {
             Destroy(gameObject); //Destorys When too far from camera
         }
