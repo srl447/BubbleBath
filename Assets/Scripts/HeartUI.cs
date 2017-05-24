@@ -6,6 +6,8 @@ public class HeartUI : MonoBehaviour {
 
     public Animator[] hearts;
 
+    int oldHealth;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -16,7 +18,13 @@ public class HeartUI : MonoBehaviour {
     {
         if (GameManager.totalHealth > -1)
         {
-            hearts[GameManager.totalHealth].SetTrigger("Hurt");
+            hearts[GameManager.totalHealth].SetBool("Show", false);
         }
-	}
+        if (GameManager.totalHealth > oldHealth)
+        {
+            hearts[GameManager.totalHealth-1].SetBool("Show", true);
+        }
+        oldHealth = GameManager.totalHealth;
+
+    }
 }

@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
 
     int wait; //wait frames
 
-    GameObject[] enemies, floors, walls; //arrays for environmental objects
+    GameObject[] enemies, floors, walls, hearts; //arrays for environmental objects
 
     void Start()
     {
@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
             worldRender(enemies); //runs world render for enemies
             worldRender(floors); //runs world render for floors
             worldRender(walls); //runs world render for walls
+            worldRender(hearts); //runs world render for hearts
         }
     }
 
@@ -38,9 +39,11 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForEndOfFrame();
 
+        //putting all objects into arrays based on tags
         enemies = GameObject.FindGameObjectsWithTag("Enemy");
         floors = GameObject.FindGameObjectsWithTag("Floor");
         walls = GameObject.FindGameObjectsWithTag("Wall");
+        hearts = GameObject.FindGameObjectsWithTag("Health");
 
         //code to place final tile at farthest distance from start
         float longestDistance = 0; //var for comparing farthest distance

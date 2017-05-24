@@ -6,6 +6,7 @@ public class PlayerHealth : MonoBehaviour {
 
     public float knockbackStrength; //how far enemies knock players back
 
+
     //Transform parent;
 
 	// Use this for initialization
@@ -33,5 +34,11 @@ public class PlayerHealth : MonoBehaviour {
             transform.Translate(knockback * knockbackStrength); //knocks back players
             
         }
+        else if (collision.gameObject.tag == "Health" && GameManager.totalHealth < 5) //player collides with health pickup
+        {
+            GameManager.totalHealth++; //player gains 1 health
+            Destroy(collision.gameObject); //destroys pickup
+        }
+        
     }
 }
