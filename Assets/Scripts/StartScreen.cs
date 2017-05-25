@@ -2,18 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-public class StartScreen : MonoBehaviour {
+public class StartScreen : MonoBehaviour
+{
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
+    public bool buttonPressed;
 	void Update ()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (buttonPressed)
         {
             SceneManager.LoadScene(1);
         }
