@@ -7,12 +7,9 @@ using UnityEngine.UI;
 public class StartScreen : MonoBehaviour
 {
 
-    public bool buttonPressed;
+
 	void Update ()
     {
-        if (buttonPressed)
-        {
             SceneManager.LoadScene(1);
-        }
 	}
 }

@@ -45,8 +45,8 @@ public class ProcGenMap : MonoBehaviour
                 transform.position = transform.position + lastMove; //goes in the same direction as last time
             }
 
-            int randTile = Random.Range(0, tiles.Length + 4);
-            if (randTile > tiles.Length)
+            int randTile = Random.Range(0, tiles.Length + 8);
+            if (randTile < tiles.Length)
             {
                 GameObject newFloor = Instantiate(tiles[Random.Range(0, tiles.Length)]) as GameObject;//places new floor tile
                 newFloor.transform.position = transform.position;

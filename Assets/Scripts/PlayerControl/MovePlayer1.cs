@@ -12,11 +12,18 @@ public class MovePlayer1 : MonoBehaviour
 
     public KeyCode upK, leftK, rightK, downK; //keys to use same script for both players
 
-	// Update is called once per frame
-	void Update ()
+    AudioSource aud;
+
+    private void Start()
+    {
+        aud = GetComponent<AudioSource>();
+    }
+
+    // Update is called once per frame
+    void Update()
     {
         //check input for moving up
-		if (Input.GetKey(upK))
+        if (Input.GetKey(upK))
         {
             up = true;
         }
@@ -53,6 +60,14 @@ public class MovePlayer1 : MonoBehaviour
         else
         {
             down = false;
+        }
+        if ((up || right || down || left) && !aud.isPlaying)
+        {
+            aud.Play();
+        }
+        else if (!up && !right && !down && !left && aud.isPlaying)
+        {
+            aud.Stop();
         }
     }
 
