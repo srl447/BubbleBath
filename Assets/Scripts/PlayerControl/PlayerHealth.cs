@@ -20,6 +20,7 @@ public class PlayerHealth : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
+        //lerps the player to a farther away position
         if (knockbackStrength > .1)
         {
             transform.position = Vector2.Lerp(transform.position, transform.position + knockback, knockbackStrength/10);
@@ -36,7 +37,7 @@ public class PlayerHealth : MonoBehaviour {
             ScreenShake.shakeStrength = 8f;
 
             knockback = transform.position - collision.gameObject.transform.position; //calcultes angle to knockback players at
-            knockbackStrength = 1.3f; //setsknockback
+            knockbackStrength = 1.3f; //sets knockback
             
         }
         else if (collision.gameObject.tag == "Health" && GameManager.totalHealth < 5) //player collides with health pickup
