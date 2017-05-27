@@ -6,11 +6,12 @@ public class PlayerHealth : MonoBehaviour {
 
     public float knockbackStrength; //how far enemies knock players back
 
+    Vector3 knockback; //angle for knockback
 
     //Transform parent;
 
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    void Start ()
     {
         //parent = GetComponentInParent<Transform>();
         GameManager.totalHealth = 5;
@@ -19,8 +20,12 @@ public class PlayerHealth : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-		
-	}
+        if (knockbackStrength > .1)
+        {
+            transform.position = Vector2.Lerp(transform.position, transform.position + knockback, knockbackStrength/10);
+        }
+        knockbackStrength = Mathf.Lerp(knockbackStrength, 0f, Time.deltaTime * 5f); // bring it back down to 0
+    }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -30,8 +35,8 @@ public class PlayerHealth : MonoBehaviour {
 
             ScreenShake.shakeStrength = 8f;
 
-            Vector2 knockback = transform.position - collision.gameObject.transform.position; //calcultes angle to knockback players at
-            transform.Translate(knockback * knockbackStrength); //knocks back players
+            knockback = transform.position - collision.gameObject.transform.position; //calcultes angle to knockback players at
+            knockbackStrength = 1.3f; //setsknockback
             
         }
         else if (collision.gameObject.tag == "Health" && GameManager.totalHealth < 5) //player collides with health pickup
