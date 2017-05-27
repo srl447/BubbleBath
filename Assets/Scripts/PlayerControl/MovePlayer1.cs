@@ -12,11 +12,11 @@ public class MovePlayer1 : MonoBehaviour
 
     public KeyCode upK, leftK, rightK, downK; //keys to use same script for both players
 
-    AudioSource aud;
+    AudioSource aud; //audio player
 
     private void Start()
     {
-        aud = GetComponent<AudioSource>();
+        aud = GetComponent<AudioSource>(); //assigning the audio player
     }
 
     // Update is called once per frame
@@ -61,11 +61,11 @@ public class MovePlayer1 : MonoBehaviour
         {
             down = false;
         }
-        if ((up || right || down || left) && !aud.isPlaying)
+        if ((up || right || down || left) && !aud.isPlaying) //if there's input play move noise
         {
             aud.Play();
         }
-        else if (!up && !right && !down && !left && aud.isPlaying)
+        else if (!up && !right && !down && !left && aud.isPlaying)//no input stop move noise
         {
             aud.Stop();
         }
