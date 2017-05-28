@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class BulletRemoval : MonoBehaviour {
 
-	// Use this for initialization
+    public AudioClip bubblePop;
+
 	void Start ()
     {
 		
@@ -21,6 +22,10 @@ public class BulletRemoval : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D collision)
     {
+        if(collision.gameObject.tag ==  "Enemy")
+        {
+            GameManager.aud.PlayOneShot(bubblePop);
+        }
         Destroy(gameObject); //Destorys on Collision
     }
 }

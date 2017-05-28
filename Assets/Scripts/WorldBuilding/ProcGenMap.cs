@@ -44,19 +44,21 @@ public class ProcGenMap : MonoBehaviour
             {
                 transform.position = transform.position + lastMove; //goes in the same direction as last time
             }
-
-            int randTile = Random.Range(0, tiles.Length + 8);
-            if (randTile < tiles.Length)
-            {
-                GameObject newFloor = Instantiate(tiles[Random.Range(0, tiles.Length)]) as GameObject;//places new floor tile
-                newFloor.transform.position = transform.position;
-            }
-            else //I want to place blank tiles more often than normal ones
-            {
-                GameObject newFloor = Instantiate(tiles[0]) as GameObject; 
-                newFloor.transform.position = transform.position;
-            }
             
+            int randTile = Random.Range(0, tiles.Length + 8);
+            if (transform.position != new Vector3(0, 0, 5)) //don't put tiles over start tile
+            {
+                if (randTile < tiles.Length)
+                {
+                    GameObject newFloor = Instantiate(tiles[Random.Range(0, tiles.Length)]) as GameObject;//places new floor tile
+                    newFloor.transform.position = transform.position;
+                }
+                else //I want to place blank tiles more often than normal ones
+                {
+                    GameObject newFloor = Instantiate(tiles[0]) as GameObject;
+                    newFloor.transform.position = transform.position;
+                }
+            }
             GameManager.tileCount++; //increases global world size
             int seedDrop = Random.Range(0, 17 - i);
             if(seedDrop == 0 && GameManager.tileCount < 40) //possibly drops new seed and checks if the world is big enough yet

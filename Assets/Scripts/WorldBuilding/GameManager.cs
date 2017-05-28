@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public static int tileCount; //Size of world
     public static int totalHealth; // health for both players
+    public static AudioSource aud;
 
     public GameObject lastTile;
 
@@ -16,6 +17,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         StartCoroutine(grabGameObjects()); //waits a frame so everything will be loaded
+        aud = GetComponent<AudioSource>();
     }
 
     void Update()

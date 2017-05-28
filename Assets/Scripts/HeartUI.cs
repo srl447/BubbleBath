@@ -16,7 +16,7 @@ public class HeartUI : MonoBehaviour {
             // the hidden heart animation plays when at full health
             hearts[GameManager.totalHealth].SetBool("Show", false);
         }
-        if (GameManager.totalHealth > oldHealth) //checks if health has increased
+        if (GameManager.totalHealth > oldHealth && GameManager.totalHealth > 0) //checks if health has increased
         {
             hearts[GameManager.totalHealth-1].SetBool("Show", true);
         }
