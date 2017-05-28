@@ -6,7 +6,9 @@ public class BulletRemoval : MonoBehaviour {
 
     public AudioClip bubblePop;
 
-	void Start ()
+    public Sprite urchin; //this is used for a workaround to avoid sound playing when hitting urchins
+
+    void Start ()
     {
 		
 	}
@@ -22,7 +24,8 @@ public class BulletRemoval : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag ==  "Enemy")
+        //plays sound for hitting enemies
+        if(collision.gameObject.tag ==  "Enemy" && collision.gameObject.GetComponent<SpriteRenderer>().sprite != urchin)
         {
             GameManager.aud.PlayOneShot(bubblePop);
         }
